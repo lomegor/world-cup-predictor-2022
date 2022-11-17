@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "baseUrl": "./",
+        "paths": {
+            "*": ["/src/*"]
+        },
+        "esModuleInterop": true,
+        "jsx": "preserve",
+        "isolatedModules": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "removeComments": false,
+        "incremental": false,
+        "sourceMap": false,
+        "skipLibCheck": true,
+        "target": "esnext",
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+    },
+    "include": ["src/**/*", "global.d.ts"],
+    "exclude": ["node_modules"]
+}
