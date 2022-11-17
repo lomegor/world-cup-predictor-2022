@@ -1,4 +1,4 @@
-import { Container, Name } from "./Team.styled";
+import { Container, Name, Selected } from "./Team.styled";
 
 import EmptyPNG from "./assets/empty.png";
 
@@ -9,11 +9,13 @@ interface Props {
     onClick?: () => void;
     selected?: boolean;
     selected2?: boolean;
+    isGroup?: boolean;
 }
 
-const Team: React.FC<Props> = ({ team, onClick, selected, selected2 }) => {
+const Team: React.FC<Props> = ({ team, onClick, selected, selected2, isGroup }) => {
     return (
         <Container onClick={onClick} selected={selected} selected2={selected2}>
+            {(isGroup && selected && <Selected>1</Selected>) || (selected2 && <Selected>2</Selected>)}
             <img src={team.image} alt={team.name} />
             <Name>{team.name}</Name>
         </Container>

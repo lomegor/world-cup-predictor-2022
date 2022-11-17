@@ -1,22 +1,34 @@
 import { useReducer } from "react";
 import {
-    Knockoff,
+    Knockout,
     Sixteen,
     Quarter,
     Semifinals,
     Final,
     Playoffs,
     Match,
+    MatchHeader,
     Group,
     GroupName,
     Groups,
     Main,
     Teams,
+    Header,
 } from "./App.styled";
 
 import Team, { EmptyTeam } from "./Team";
 
 import data, { TEAMS } from "./data";
+
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: Roboto;
+    font-weight: 200;
+    background-color: #f8f8f8;
+  }
+`;
 
 type State = Record<string, number>;
 
@@ -92,6 +104,8 @@ const App: React.FC = () => {
 
     return (
         <Main>
+            <GlobalStyle />
+            <Header>Group Stage</Header>
             <Groups>
                 {Object.entries(data.groups).map(([group, teams]) => (
                     <Group key={group}>
@@ -109,19 +123,22 @@ const App: React.FC = () => {
                                             payload: { group, i },
                                         })
                                     }
+                                    isGroup
                                 />
                             ))}
                         </Teams>
                     </Group>
                 ))}
             </Groups>
-            <Knockoff>
+            <Header>Knockoff Stage</Header>
+            <Knockout>
                 <Sixteen>
                     {data.knockout.sixteen.map((match, i) => {
                         const team1 = TEAMS[state[match[0]]];
                         const team2 = TEAMS[state[match[1]]];
                         return (
                             <Match key={match[0] + match[1]}>
+                                <MatchHeader>Round of 16 {i}</MatchHeader>
                                 {team1 ? (
                                     <Team team={team1} {...getProps("sixteen", i, match[0])} />
                                 ) : (
@@ -142,6 +159,7 @@ const App: React.FC = () => {
                         const team2 = TEAMS[state[match[1]]];
                         return (
                             <Match key={match[0] + match[1]}>
+                                <MatchHeader>Quarter-final {i}</MatchHeader>
                                 {team1 ? (
                                     <Team team={team1} {...getProps("quarter", i, match[0])} />
                                 ) : (
@@ -162,6 +180,7 @@ const App: React.FC = () => {
                         const team2 = TEAMS[state[match[1]]];
                         return (
                             <Match key={match[0] + match[1]}>
+                                <MatchHeader>Semi-final {i}</MatchHeader>
                                 {team1 ? (
                                     <Team team={team1} {...getProps("semifinal", i, match[0], match[1])} />
                                 ) : (
@@ -182,6 +201,7 @@ const App: React.FC = () => {
                         const team2 = TEAMS[state[match[1]]];
                         return (
                             <Match key={match[0] + match[1]}>
+                                <MatchHeader>Final</MatchHeader>
                                 {team1 ? (
                                     <Team team={team1} {...getProps("final", i, match[0])} />
                                 ) : (
@@ -201,6 +221,7 @@ const App: React.FC = () => {
                             const team2 = TEAMS[state[match[1]]];
                             return (
                                 <Match key={match[0] + match[1]}>
+                                    <MatchHeader>3rd & 4th</MatchHeader>
                                     {team1 ? (
                                         <Team team={team1} {...getProps("playoff", i, match[0])} />
                                     ) : (
@@ -216,7 +237,7 @@ const App: React.FC = () => {
                         })}
                     </Playoffs>
                 </Final>
-            </Knockoff>
+            </Knockout>
         </Main>
     );
 };
