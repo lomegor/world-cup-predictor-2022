@@ -16,6 +16,11 @@ export const Groups = styled.div`
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
+
+    @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(8, 1fr);
+    }
 `;
 
 export const Group = styled.div`
@@ -46,13 +51,17 @@ export const Teams = styled.div`
 export const Knockout = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1;
+    grid-template-rows: 1fr;
     margin-top: 16px;
     gap: 16px;
     background-color: white;
     border-radius: 5px;
     padding: 8px;
     border: 1px solid #d8d8d8;
+
+    @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 const Column = styled.div`
@@ -66,9 +75,11 @@ export const Quarter = styled(Column)``;
 export const Semifinals = styled(Column)``;
 export const Final = styled(Column)``;
 export const Playoffs = styled.div`
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    @media (min-width: 501px) {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
 `;
 
 export const MatchHeader = styled.h3`
@@ -92,4 +103,22 @@ export const Match = styled.div`
     &:hover {
         box-shadow: 0 2px 8px 0 rgb(0 0 0 / 25%);
     }
+`;
+
+export const ShareButton = styled.button`
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px;
+    color: inherit;
+    font: inherit;
+    background: none;
+    border: none;
+    outline: inherit;
+    cursor: pointer;
+    background-color: #9595dc;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+    font-weight: 400;
+    font-size: 20px;
 `;

@@ -14,6 +14,7 @@ import {
     Main,
     Teams,
     Header,
+    ShareButton,
 } from "./App.styled";
 
 import Team, { EmptyTeam } from "./Team";
@@ -196,25 +197,6 @@ const App: React.FC = () => {
                     })}
                 </Semifinals>
                 <Final>
-                    {data.knockout.final.map((match, i) => {
-                        const team1 = TEAMS[state[match[0]]];
-                        const team2 = TEAMS[state[match[1]]];
-                        return (
-                            <Match key={match[0] + match[1]}>
-                                <MatchHeader>Final</MatchHeader>
-                                {team1 ? (
-                                    <Team team={team1} {...getProps("final", i, match[0])} />
-                                ) : (
-                                    <EmptyTeam name={match[0]} />
-                                )}
-                                {team2 ? (
-                                    <Team team={team2} {...getProps("final", i, match[1])} />
-                                ) : (
-                                    <EmptyTeam name={match[1]} />
-                                )}
-                            </Match>
-                        );
-                    })}
                     <Playoffs>
                         {data.knockout.playoff.map((match, i) => {
                             const team1 = TEAMS[state[match[0]]];
@@ -236,8 +218,28 @@ const App: React.FC = () => {
                             );
                         })}
                     </Playoffs>
+                    {data.knockout.final.map((match, i) => {
+                        const team1 = TEAMS[state[match[0]]];
+                        const team2 = TEAMS[state[match[1]]];
+                        return (
+                            <Match key={match[0] + match[1]}>
+                                <MatchHeader>Final</MatchHeader>
+                                {team1 ? (
+                                    <Team team={team1} {...getProps("final", i, match[0])} />
+                                ) : (
+                                    <EmptyTeam name={match[0]} />
+                                )}
+                                {team2 ? (
+                                    <Team team={team2} {...getProps("final", i, match[1])} />
+                                ) : (
+                                    <EmptyTeam name={match[1]} />
+                                )}
+                            </Match>
+                        );
+                    })}
                 </Final>
             </Knockout>
+            <ShareButton onClick={() => navigator.clipboard.writeText(window.location.href)}>Share</ShareButton>
         </Main>
     );
 };
