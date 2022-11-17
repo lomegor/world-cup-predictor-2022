@@ -15,7 +15,7 @@ interface Props {
 const Team: React.FC<Props> = ({ team, onClick, selected, selected2, isGroup }) => {
     return (
         <Container onClick={onClick} selected={selected} selected2={selected2}>
-            {(isGroup && selected && <Selected>1</Selected>) || (selected2 && <Selected>2</Selected>)}
+            {(isGroup && selected && <Selected>1st</Selected>) || (selected2 && <Selected>2nd</Selected>)}
             <img src={team.image} alt={team.name} />
             <Name>{team.name}</Name>
         </Container>

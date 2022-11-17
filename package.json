@@ -11,6 +11,7 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@types/styled-components": "^5.1.26",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,6 +21,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
@@ -46,5 +49,6 @@
   },
   "description": "Predictor For The World Cup",
   "author": "Sebastián Ventura <lomegor@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://lomegor.github.io/world-cup-predictor-2022"
 }
